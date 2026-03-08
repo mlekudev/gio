@@ -5,14 +5,14 @@ package material
 import (
 	"image/color"
 
-	"gioui.org/font"
-	"gioui.org/internal/f32color"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/op/paint"
-	"gioui.org/text"
-	"gioui.org/unit"
-	"gioui.org/widget"
+	"github.com/mlekudev/gio/font"
+	"github.com/mlekudev/gio/f32color"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/op/paint"
+	"github.com/mlekudev/gio/text"
+	"github.com/mlekudev/gio/unit"
+	"github.com/mlekudev/gio/widget"
 )
 
 type EditorStyle struct {

@@ -8,11 +8,11 @@ import (
 	"math"
 	"time"
 
-	"gioui.org/f32"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/op/clip"
-	"gioui.org/op/paint"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/op/clip"
+	"github.com/mlekudev/gio/op/paint"
 )
 
 type LoaderStyle struct {

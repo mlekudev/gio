@@ -9,17 +9,16 @@ import (
 	"strings"
 	"time"
 
-	"gioui.org/f32"
-	f32internal "gioui.org/internal/f32"
-	"gioui.org/internal/ops"
-	"gioui.org/io/clipboard"
-	"gioui.org/io/event"
-	"gioui.org/io/key"
-	"gioui.org/io/pointer"
-	"gioui.org/io/semantic"
-	"gioui.org/io/system"
-	"gioui.org/io/transfer"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/io/clipboard"
+	"github.com/mlekudev/gio/io/event"
+	"github.com/mlekudev/gio/io/key"
+	"github.com/mlekudev/gio/io/pointer"
+	"github.com/mlekudev/gio/io/semantic"
+	"github.com/mlekudev/gio/io/system"
+	"github.com/mlekudev/gio/io/transfer"
+	"github.com/mlekudev/gio/op"
 )
 
 // Router tracks the [io/event.Tag] identifiers of user interface widgets
@@ -655,7 +654,7 @@ func (q *Router) ScrollFocus(dist image.Point) {
 	q.changeState(nil, q.lastState(), q.pointer.queue.Deliver(q.handlers, area, pointer.Event{
 		Kind:   pointer.Scroll,
 		Source: pointer.Touch,
-		Scroll: f32internal.FPt(dist),
+		Scroll: f32.FPt(dist),
 	}))
 }
 

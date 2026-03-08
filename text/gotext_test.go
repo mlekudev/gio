@@ -13,9 +13,9 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/math/fixed"
 
-	giofont "gioui.org/font"
-	"gioui.org/font/opentype"
-	"gioui.org/io/system"
+	giofont "github.com/mlekudev/gio/font"
+	"github.com/mlekudev/gio/font/opentype"
+	"github.com/mlekudev/gio/io/system"
 )
 
 var english = system.Locale{
@@ -209,39 +209,6 @@ func TestNewlineSynthesis(t *testing.T) {
 	}
 }
 
-// simpleGlyph returns a simple square glyph with the provided cluster
-// value.
-func simpleGlyph(cluster int) shaping.Glyph {
-	return complexGlyph(cluster, 1, 1)
-}
-
-// ligatureGlyph returns a simple square glyph with the provided cluster
-// value and number of runes.
-func ligatureGlyph(cluster, runes int) shaping.Glyph {
-	return complexGlyph(cluster, runes, 1)
-}
-
-// expansionGlyph returns a simple square glyph with the provided cluster
-// value and number of glyphs.
-func expansionGlyph(cluster, glyphs int) shaping.Glyph {
-	return complexGlyph(cluster, 1, glyphs)
-}
-
-// complexGlyph returns a simple square glyph with the provided cluster
-// value, number of associated runes, and number of glyphs in the cluster.
-func complexGlyph(cluster, runes, glyphs int) shaping.Glyph {
-	return shaping.Glyph{
-		Width:        fixed.I(10),
-		Height:       fixed.I(10),
-		XAdvance:     fixed.I(10),
-		YAdvance:     fixed.I(10),
-		YBearing:     fixed.I(10),
-		ClusterIndex: cluster,
-		GlyphCount:   glyphs,
-		RuneCount:    runes,
-	}
-}
-
 // copyLines performs a deep copy of the provided lines. This is necessary if you
 // want to use the line wrapper again while also using the lines.
 func copyLines(lines []shaping.Line) []shaping.Line {
@@ -288,10 +255,10 @@ func makeTestText(shaper *shaperImpl, primaryDir system.TextDirection, fontSize,
 		simpleRunes := []rune(simpleSource)
 		complexRunes := []rune(complexSource)
 		if runeLimit < len(simpleRunes) {
-			ltrSource = string(simpleRunes[:runeLimit])
+			simpleSource = string(simpleRunes[:runeLimit])
 		}
 		if runeLimit < len(complexRunes) {
-			rtlSource = string(complexRunes[:runeLimit])
+			complexSource = string(complexRunes[:runeLimit])
 		}
 	}
 	simpleText, _ := shaper.shapeAndWrapText(Parameters{

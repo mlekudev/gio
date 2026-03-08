@@ -6,11 +6,11 @@ import (
 	"image"
 	"testing"
 
-	"gioui.org/io/input"
-	"gioui.org/io/key"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/widget"
+	"github.com/mlekudev/gio/io/input"
+	"github.com/mlekudev/gio/io/key"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/widget"
 )
 
 func TestClickable(t *testing.T) {

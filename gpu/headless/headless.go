@@ -9,9 +9,9 @@ import (
 	"image"
 	"image/color"
 
-	"gioui.org/gpu"
-	"gioui.org/gpu/internal/driver"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/gpu"
+	"github.com/mlekudev/gio/gpu/driver"
+	"github.com/mlekudev/gio/op"
 )
 
 // Window is a headless window.

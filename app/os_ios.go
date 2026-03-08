@@ -91,14 +91,14 @@ import (
 	"unicode/utf16"
 	"unsafe"
 
-	"gioui.org/f32"
-	"gioui.org/io/event"
-	"gioui.org/io/key"
-	"gioui.org/io/pointer"
-	"gioui.org/io/system"
-	"gioui.org/io/transfer"
-	"gioui.org/op"
-	"gioui.org/unit"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/io/event"
+	"github.com/mlekudev/gio/io/key"
+	"github.com/mlekudev/gio/io/pointer"
+	"github.com/mlekudev/gio/io/system"
+	"github.com/mlekudev/gio/io/transfer"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/unit"
 )
 
 type UIKitViewEvent struct {

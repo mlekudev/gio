@@ -19,23 +19,23 @@ import (
 	"time"
 	"unsafe"
 
-	"gioui.org/gpu/internal/driver"
-	"gioui.org/internal/byteslice"
-	"gioui.org/internal/f32"
-	"gioui.org/internal/f32color"
-	"gioui.org/internal/ops"
-	"gioui.org/internal/scene"
-	"gioui.org/internal/stroke"
-	"gioui.org/layout"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/gpu/driver"
+	"github.com/mlekudev/gio/byteslice"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/f32color"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/scene"
+	"github.com/mlekudev/gio/stroke"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
 	"gioui.org/shader"
 	"gioui.org/shader/gio"
 
 	// Register backends.
-	_ "gioui.org/gpu/internal/d3d11"
-	_ "gioui.org/gpu/internal/metal"
-	_ "gioui.org/gpu/internal/opengl"
-	_ "gioui.org/gpu/internal/vulkan"
+	_ "github.com/mlekudev/gio/gpu/d3d11"
+	_ "github.com/mlekudev/gio/gpu/metal"
+	_ "github.com/mlekudev/gio/gpu/opengl"
+	_ "github.com/mlekudev/gio/gpu/vulkan"
 )
 
 type GPU interface {
@@ -1193,12 +1193,16 @@ func (d *drawState) materialFor(rect f32.Rectangle, off f32.Point, partTrans f32
 		}
 		dx := float32(dr.Dx())
 		sdx := sr.Dx()
-		sr.Min.X += float32(clip.Min.X-dr.Min.X) * sdx / dx
-		sr.Max.X -= float32(dr.Max.X-clip.Max.X) * sdx / dx
+		if dx != 0 {
+			sr.Min.X += float32(clip.Min.X-dr.Min.X) * sdx / dx
+			sr.Max.X -= float32(dr.Max.X-clip.Max.X) * sdx / dx
+		}
 		dy := float32(dr.Dy())
 		sdy := sr.Dy()
-		sr.Min.Y += float32(clip.Min.Y-dr.Min.Y) * sdy / dy
-		sr.Max.Y -= float32(dr.Max.Y-clip.Max.Y) * sdy / dy
+		if dy != 0 {
+			sr.Min.Y += float32(clip.Min.Y-dr.Min.Y) * sdy / dy
+			sr.Max.Y -= float32(dr.Max.Y-clip.Max.Y) * sdy / dy
+		}
 		uvScale, uvOffset := texSpaceTransform(sr, sz)
 		m.uvTrans = partTrans.Mul(f32.AffineId().Scale(f32.Point{}, uvScale).Offset(uvOffset))
 		m.data = d.image
@@ -1362,8 +1366,15 @@ func (p *pipeline) Release() {
 // into quad texture coordinates.
 func texSpaceTransform(r f32.Rectangle, bounds image.Point) (f32.Point, f32.Point) {
 	size := f32.Point{X: float32(bounds.X), Y: float32(bounds.Y)}
-	scale := f32.Point{X: r.Dx() / size.X, Y: r.Dy() / size.Y}
-	offset := f32.Point{X: r.Min.X / size.X, Y: r.Min.Y / size.Y}
+	var scale, offset f32.Point
+	if size.X != 0 {
+		scale.X = r.Dx() / size.X
+		offset.X = r.Min.X / size.X
+	}
+	if size.Y != 0 {
+		scale.Y = r.Dy() / size.Y
+		offset.Y = r.Min.Y / size.Y
+	}
 	return scale, offset
 }
 
@@ -1371,6 +1382,9 @@ func texSpaceTransform(r f32.Rectangle, bounds image.Point) (f32.Point, f32.Poin
 func gradientSpaceTransform(clip image.Rectangle, off f32.Point, stop1, stop2 f32.Point) f32.Affine2D {
 	d := stop2.Sub(stop1)
 	l := float32(math.Sqrt(float64(d.X*d.X + d.Y*d.Y)))
+	if l == 0 {
+		return f32.Affine2D{}
+	}
 	a := float32(math.Atan2(float64(-d.Y), float64(d.X)))
 
 	// TODO: optimize

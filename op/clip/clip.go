@@ -8,12 +8,11 @@ import (
 	"image"
 	"math"
 
-	"gioui.org/f32"
-	f32internal "gioui.org/internal/f32"
-	"gioui.org/internal/ops"
-	"gioui.org/internal/scene"
-	"gioui.org/internal/stroke"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/scene"
+	"github.com/mlekudev/gio/stroke"
+	"github.com/mlekudev/gio/op"
 )
 
 // Op represents a clip area. Op intersects the current clip area with
@@ -52,7 +51,7 @@ func (p Op) add(o *op.Ops) {
 	if !path.hasSegments && p.width > 0 {
 		switch p.path.shape {
 		case ops.Rect:
-			b := f32internal.FRect(path.bounds)
+			b := f32.FRect(path.bounds)
 			var rect Path
 			rect.Begin(o)
 			rect.MoveTo(b.Min)
@@ -130,7 +129,7 @@ type Path struct {
 	macro       op.MacroOp
 	start       f32.Point
 	hasSegments bool
-	bounds      f32internal.Rectangle
+	bounds      f32.Rectangle
 	hash        maphash.Hash
 }
 
@@ -227,7 +226,7 @@ func (p *Path) cmd(data []byte, c scene.Command) {
 func (p *Path) expand(pt f32.Point) {
 	if !p.hasSegments {
 		p.hasSegments = true
-		p.bounds = f32internal.Rectangle{Min: pt, Max: pt}
+		p.bounds = f32.Rectangle{Min: pt, Max: pt}
 	} else {
 		b := p.bounds
 		if pt.X < b.Min.X {

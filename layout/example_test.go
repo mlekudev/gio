@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"image"
 
-	"gioui.org/layout"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
 )
 
 func ExampleInset() {

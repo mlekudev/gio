@@ -12,22 +12,22 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"gioui.org/f32"
-	"gioui.org/font/gofont"
-	"gioui.org/gpu"
-	"gioui.org/internal/debug"
-	"gioui.org/internal/ops"
-	"gioui.org/io/event"
-	"gioui.org/io/input"
-	"gioui.org/io/key"
-	"gioui.org/io/pointer"
-	"gioui.org/io/system"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/text"
-	"gioui.org/unit"
-	"gioui.org/widget"
-	"gioui.org/widget/material"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/font/gofont"
+	"github.com/mlekudev/gio/gpu"
+	"github.com/mlekudev/gio/debug"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/io/event"
+	"github.com/mlekudev/gio/io/input"
+	"github.com/mlekudev/gio/io/key"
+	"github.com/mlekudev/gio/io/pointer"
+	"github.com/mlekudev/gio/io/system"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/text"
+	"github.com/mlekudev/gio/unit"
+	"github.com/mlekudev/gio/widget"
+	"github.com/mlekudev/gio/widget/material"
 )
 
 // Option configures a window.
@@ -969,13 +969,3 @@ func Decorated(enabled bool) Option {
 	}
 }
 
-// flushEvent is sent to detect when the user program
-// has completed processing of all prior events. Its an
-// [io/event.Event] but only for internal use.
-type flushEvent struct{}
-
-func (t flushEvent) ImplementsEvent() {}
-
-// theFlushEvent avoids allocating garbage when sending
-// flushEvents.
-var theFlushEvent flushEvent

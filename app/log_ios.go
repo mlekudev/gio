@@ -22,7 +22,7 @@ import (
 	"log"
 	"unsafe"
 
-	_ "gioui.org/internal/cocoainit"
+	_ "github.com/mlekudev/gio/cocoainit"
 )
 
 func init() {

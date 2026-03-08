@@ -3,8 +3,7 @@
 package app
 
 import (
-	"gioui.org/io/event"
-	"golang.org/x/net/idna"
+	"github.com/mlekudev/gio/io/event"
 	"image"
 	"net/url"
 	"os"
@@ -12,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"gioui.org/io/input"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/unit"
+	"github.com/mlekudev/gio/io/input"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/unit"
 )
 
 // extraArgs contains extra arguments to append to
@@ -32,9 +31,9 @@ var extraArgs string
 // on Wayland it is the toplevel app_id,
 // on X11 it is the X11 XClassHint.
 //
-// ID is set by the [gioui.org/cmd/gogio] tool or manually with the -X linker flag. For example,
+// ID is set by the [github.com/mlekudev/gio/cmd/gogio] tool or manually with the -X linker flag. For example,
 //
-//	go build -ldflags="-X 'gioui.org/app.ID=org.gioui.example.Kitchen'" .
+//	go build -ldflags="-X 'github.com/mlekudev/gio/app.ID=org.gioui.example.Kitchen'" .
 //
 // Note that ID is treated as a constant, and that changing it at runtime
 // is not supported. The default value of ID is filepath.Base(os.Args[0]).
@@ -157,16 +156,8 @@ func Events(yield func(event.Event) bool) {
 	osMain()
 }
 
+//lint:ignore U1000 read by processGlobalEvent on windows, android, darwin
 var yieldGlobalEvent func(evt event.Event) bool
-
-func processGlobalEvent(evt event.Event) {
-	if yieldGlobalEvent == nil {
-		return
-	}
-	if !yieldGlobalEvent(evt) {
-		yieldGlobalEvent = nil
-	}
-}
 
 func (FrameEvent) ImplementsEvent() {}
 func (URLEvent) ImplementsEvent()   {}
@@ -179,21 +170,4 @@ func init() {
 	if ID == "" {
 		ID = filepath.Base(os.Args[0])
 	}
-}
-
-// newURLEvent creates a URLEvent from a raw URL string, handling Punycode decoding.
-func newURLEvent(rawurl string) (URLEvent, error) {
-	u, err := url.Parse(rawurl)
-	if err != nil {
-		return URLEvent{}, err
-	}
-	u.Host, err = idna.Punycode.ToUnicode(u.Hostname())
-	if err != nil {
-		return URLEvent{}, err
-	}
-	u, err = url.Parse(u.String())
-	if err != nil {
-		return URLEvent{}, err
-	}
-	return URLEvent{URL: u}, nil
 }

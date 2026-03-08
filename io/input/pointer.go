@@ -7,14 +7,13 @@ import (
 	"io"
 	"slices"
 
-	"gioui.org/f32"
-	f32internal "gioui.org/internal/f32"
-	"gioui.org/internal/ops"
-	"gioui.org/io/event"
-	"gioui.org/io/pointer"
-	"gioui.org/io/semantic"
-	"gioui.org/io/system"
-	"gioui.org/io/transfer"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/io/event"
+	"github.com/mlekudev/gio/io/pointer"
+	"github.com/mlekudev/gio/io/semantic"
+	"github.com/mlekudev/gio/io/system"
+	"github.com/mlekudev/gio/io/transfer"
 )
 
 type pointerQueue struct {
@@ -981,8 +980,8 @@ func firstMimeMatch(src, tgt *pointerFilter) (first string, matched bool) {
 }
 
 func (op *areaOp) Hit(pos f32.Point) bool {
-	pos = pos.Sub(f32internal.FPt(op.rect.Min))
-	size := f32internal.FPt(op.rect.Size())
+	pos = pos.Sub(f32.FPt(op.rect.Min))
+	size := f32.FPt(op.rect.Size())
 	switch op.kind {
 	case areaRect:
 		return 0 <= pos.X && pos.X < size.X &&
@@ -1001,8 +1000,8 @@ func (op *areaOp) Hit(pos f32.Point) bool {
 }
 
 func (a *areaNode) bounds() image.Rectangle {
-	return f32internal.Rectangle{
-		Min: a.trans.Transform(f32internal.FPt(a.area.rect.Min)),
-		Max: a.trans.Transform(f32internal.FPt(a.area.rect.Max)),
+	return f32.Rectangle{
+		Min: a.trans.Transform(f32.FPt(a.area.rect.Min)),
+		Max: a.trans.Transform(f32.FPt(a.area.rect.Max)),
 	}.Round()
 }

@@ -10,14 +10,14 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"gioui.org/f32"
-	"gioui.org/font"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/op/clip"
-	"gioui.org/op/paint"
-	"gioui.org/text"
-	"gioui.org/unit"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/font"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/op/clip"
+	"github.com/mlekudev/gio/op/paint"
+	"github.com/mlekudev/gio/text"
+	"github.com/mlekudev/gio/unit"
 	"golang.org/x/image/math/fixed"
 )
 

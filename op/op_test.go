@@ -6,7 +6,7 @@ import (
 	"image"
 	"testing"
 
-	"gioui.org/internal/ops"
+	"github.com/mlekudev/gio/ops"
 )
 
 func TestTransformChecks(t *testing.T) {

@@ -121,7 +121,7 @@ import "C"
 import (
 	"errors"
 	"fmt"
-	"gioui.org/io/transfer"
+	"github.com/mlekudev/gio/io/transfer"
 	"image"
 	"image/color"
 	"io"
@@ -137,17 +137,17 @@ import (
 	"unicode/utf16"
 	"unsafe"
 
-	"gioui.org/internal/f32color"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/f32color"
+	"github.com/mlekudev/gio/op"
 
-	"gioui.org/f32"
-	"gioui.org/io/event"
-	"gioui.org/io/input"
-	"gioui.org/io/key"
-	"gioui.org/io/pointer"
-	"gioui.org/io/semantic"
-	"gioui.org/io/system"
-	"gioui.org/unit"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/io/event"
+	"github.com/mlekudev/gio/io/input"
+	"github.com/mlekudev/gio/io/key"
+	"github.com/mlekudev/gio/io/pointer"
+	"github.com/mlekudev/gio/io/semantic"
+	"github.com/mlekudev/gio/io/system"
+	"github.com/mlekudev/gio/unit"
 )
 
 type window struct {

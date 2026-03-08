@@ -6,10 +6,10 @@ package key
 import (
 	"strings"
 
-	"gioui.org/f32"
-	"gioui.org/internal/ops"
-	"gioui.org/io/event"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/io/event"
+	"github.com/mlekudev/gio/op"
 )
 
 // Filter matches any [Event] that matches the parameters.

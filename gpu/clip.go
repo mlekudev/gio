@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"math"
 
-	"gioui.org/internal/f32"
-	"gioui.org/internal/stroke"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/stroke"
 )
 
 type quadSplitter struct {
@@ -53,26 +53,6 @@ const (
 	swCorner = 0*0.5 + 0*0.25
 	seCorner = 0*0.5 + 1*0.25
 )
-
-func encodeVertex(data []byte, meta uint32, cornerx, cornery int16, from, ctrl, to f32.Point) {
-	var corner float32
-	if cornerx == 1 {
-		corner += .5
-	}
-	if cornery == 1 {
-		corner += .25
-	}
-	v := vertex{
-		Corner: corner,
-		FromX:  from.X,
-		FromY:  from.Y,
-		CtrlX:  ctrl.X,
-		CtrlY:  ctrl.Y,
-		ToX:    to.X,
-		ToY:    to.Y,
-	}
-	v.encode(data, meta)
-}
 
 func (qs *quadSplitter) encodeQuadTo(from, ctrl, to f32.Point) {
 	data := qs.d.writeVertCache(vertStride * 4)

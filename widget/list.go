@@ -5,11 +5,11 @@ package widget
 import (
 	"image"
 
-	"gioui.org/gesture"
-	"gioui.org/io/key"
-	"gioui.org/io/pointer"
-	"gioui.org/layout"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/gesture"
+	"github.com/mlekudev/gio/io/key"
+	"github.com/mlekudev/gio/io/pointer"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
 )
 
 // Scrollbar holds the persistent state for an area that can

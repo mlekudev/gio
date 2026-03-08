@@ -12,9 +12,9 @@ import (
 	"runtime"
 	"testing"
 
-	"gioui.org/gpu/internal/driver"
-	"gioui.org/internal/byteslice"
-	"gioui.org/internal/f32color"
+	"github.com/mlekudev/gio/gpu/driver"
+	"github.com/mlekudev/gio/byteslice"
+	"github.com/mlekudev/gio/f32color"
 	"gioui.org/shader"
 	"gioui.org/shader/gio"
 )

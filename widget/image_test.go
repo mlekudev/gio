@@ -6,9 +6,9 @@ import (
 	"image"
 	"testing"
 
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/op/paint"
+	"github.com/mlekudev/gio/layout"
+	"github.com/mlekudev/gio/op"
+	"github.com/mlekudev/gio/op/paint"
 )
 
 func TestImageScale(t *testing.T) {

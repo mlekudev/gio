@@ -6,10 +6,9 @@ import (
 	"image"
 	"math"
 
-	"gioui.org/f32"
-	f32internal "gioui.org/internal/f32"
-	"gioui.org/internal/ops"
-	"gioui.org/op"
+	"github.com/mlekudev/gio/f32"
+	"github.com/mlekudev/gio/ops"
+	"github.com/mlekudev/gio/op"
 )
 
 // Rect represents the clip area of a pixel-aligned rectangle.
@@ -82,7 +81,7 @@ func (rr RRect) Path(ops *op.Ops) PathSpec {
 	const iq = 1 - q
 
 	se, sw, nw, ne := float32(rr.SE), float32(rr.SW), float32(rr.NW), float32(rr.NE)
-	rrf := f32internal.FRect(rr.Rect)
+	rrf := f32.FRect(rr.Rect)
 	w, n, e, s := rrf.Min.X, rrf.Min.Y, rrf.Max.X, rrf.Max.Y
 
 	p.MoveTo(f32.Point{X: w + nw, Y: n})
@@ -134,7 +133,7 @@ func (e Ellipse) Path(o *op.Ops) PathSpec {
 	var p Path
 	p.Begin(o)
 
-	bf := f32internal.FRect(bounds)
+	bf := f32.FRect(bounds)
 	center := bf.Max.Add(bf.Min).Mul(.5)
 	diam := bf.Dx()
 	r := diam * .5
